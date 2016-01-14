@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thoughtbox</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<h1>Thoughtbox</h1>
+
+	<% flash.each do |key, message| %>
+		<div class="flash-<%= key %>"><%= message %></div>
+	<% end %>
+
+<%= yield %>
+
+</body>
+</html>

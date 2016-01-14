@@ -1,0 +1,39 @@
+<%= link_to "Sign Out", logout_path %>
+
+<div class="link-filters">
+	Filter Links By:
+	<%= text_field_tag :filter_title %>
+	<%= select_tag :filter_status, options_for_select(['all', 'read', 'unread']) %>
+</div>
+
+<button id="sort-button">Sort Links</button>
+
+<div class="link-container">
+	<ul>
+		<% @links.each do |link| %>
+			<% if link.read %>
+				<li class="link read" data-id="<%= link.id %>" data-read="read">
+			<% else %>
+				<li class="link" data-id="<%= link.id %>" data-read="unread">
+			<% end %>
+				<span class="link-body"><%= link_to link.title, link.location %></span><br>
+				<p><%= link.summary %></p><br>
+			<button class="status-change" data-read="<%= link.read %>">
+				<% if link.read %>
+					Mark as Unread
+				<% else %>
+					Mark as Read
+				<% end %>
+			</button><%= button_to 'Edit Link', edit_link_path(link), :method => :get %></li>
+		<% end %>
+	</ul>
+</div>
+
+<p>Add Link</p>
+<%= form_for @new_link do |f| %>
+	<%= f.label :title, "Title:" %>
+	<%= f.text_field :title %><br>
+	<%= f.label :location, "Location:" %>
+	<%= f.text_field :location %><br>
+	<%= f.submit "Create Link" %>
+<% end %>
