@@ -22,9 +22,9 @@ function changeReadStatus() {
 			success: function() {
 				var modifyLink = $("[data-id=" + id_of_link + "]");
 				modifyLink.toggleClass('read');
-				modifyLink.attr('data-read', `${new_status}`);
+				modifyLink.attr('data-read', new_status);
 				var button = $(modifyLink.children('button'));
-				button.prop('innerText', `Mark as ${humanizer[new_status]}`);
+				button.prop('innerText', 'Mark as ' + humanizer[new_status]);
 				button.one('click', function () {
 					changeStatusOfLink(id_of_link, !new_status);
 				});
