@@ -21,3 +21,7 @@
 .flash-error {
 	color: red;
 }
+
+.read span a {
+	color: #333;
+}
