@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :links
   validates :name, presence: { message: "is required. " }
   validates :email, presence: { message: "is required. " },
                     uniqueness: { message: "is already in use. " }
