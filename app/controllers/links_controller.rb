@@ -13,6 +13,23 @@ class LinksController < ApplicationController
     redirect_to links_path
   end
 
+  def edit
+    @link = Link.find(params[:id])
+    unless User.find(cookies.signed[:session]).links.include?(@link)
+      flash[:error] = "Unauthorized access."
+      redirect_to :back and return
+    end
+  end
+
+  def update
+    link = Link.find_by(id: params[:id]).update(link_params)
+    unless link
+      flash[:error] = "Bad URL location. Please doublecheck that before trying again."
+      redirect_to :back and return
+    end
+    redirect_to links_path
+  end
+
   private
 
   def link_params

@@ -9,6 +9,7 @@
 				<li class="link" data-id="<%= link.id %>" data-read="unread">
 			<% end %>
 			<span class="link-body"><%= link_to link.title, link.url %></span>
+			<%= button_to 'Edit Link', edit_link_path(link), :method => :get %>
 		<% end %>
 	</ul>
 </div>
